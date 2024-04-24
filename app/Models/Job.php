@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Job{
+class Job extends Modal{
     public static function all(): array{
         return [
             [
