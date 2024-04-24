@@ -28,20 +28,12 @@ Route::get('jobs', function () {
     ]);
 });
 
-Route::get('jobs/{id}', function ($id) {
-       
-    // \Illuminate\Support\Arr::first($jobs, function($job) use ($id){
-    //     return $job['id'] = $id;
-    // })
-    // return view('jobs/$id');
-    // });
-
-    // $job = \Illuminate\Support\Arr::first($jobs, fn($job)=> $job['id'] == $id);
-    $job = Arr::first(Job::all(), fn($job)=> $job['id'] == $id);
-   // dd($job);
+Route::get('/jobs/{id}', function ($id) {
+   $job = Job::find($id);
 
     return view('job',['job'=>$job]);
  });
-Route::get('contact', function () {
+
+Route::get('/contact', function () {
     return view('contact');
 });
