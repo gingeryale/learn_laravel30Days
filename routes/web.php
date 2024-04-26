@@ -36,9 +36,9 @@ Route::get('/jobs', function () {
 });
 
 // view specific job - Show
-Route::get('/jobs/{id}', function ($id) {
-   $job = Job::find($id);
-
+Route::get('/jobs/{job}', function (Job $job) {
+    // wildcard + paramter and class TYPE// default wildcard is id
+    // $job = Job::find($id);
     return view('jobs.show',['job'=>$job]);
  });
 
@@ -87,12 +87,13 @@ $job->update([
   });
 
 // Delete
-Route::delete('/jobs/{id}', function ($id) {
+Route::delete('/jobs/{job}', function (Job $job) {
    // auth
    // delete job
    // Job::findOrFail($id)->delete();
-   $job = Job::findOrFail($id);
-    $job->delete();   // redirect
+    $job->delete();//$job = Job::findOrFail($id);
+   // $job->delete();   
+   // redirect
    return redirect('/jobs');
   });
 
