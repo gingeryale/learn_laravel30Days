@@ -10,54 +10,41 @@
       <div class="border-b border-gray-900/10 pb-12">
         <h2 class="text-base font-semibold leading-7 text-gray-900">Create New Job</h2>
         <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed to job applicants.</p>
+
+        @if($errors->all())
+        <div class="mb-4">
+          @foreach($errors->all() as $err)
+          <li class="text-red-500 italic font-bold">{{ $err }}</li>
+          @endforeach
+        </div>
+        @endif
   
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <div class="sm:col-span-4">
-
-            @if($errors->all())
-            <div class="mb-4">
-              @foreach($errors->all() as $err)
-              <li class="text-red-500 italic font-bold">{{ $err }}</li>
-              @endforeach
-            </div>
-            @endif
-
-            <label for="title" class="block text-sm font-bold leading-6 text-gray-900">Job Name here</label>
+          <x-form-field>
+            <x-form-label for="title">Job Name here</x-form-label>
             <div class="mt-2">
-              <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-               
-                <input type="text" name="title" id="title" class="block flex-1 border-0 px-3 bg-transparent py-1.5  text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="job name here" required>
-              </div>
-              @error('title')
-             <p class="text-xs text-red-500 font-semibold"> {{ $message}}</p>
-              @enderror
+               <x-form-input type="text" name="title" id="title" placeholder="job name here" required></x-form-input>
+            <x-form-error name="title" />
             </div>
-          </div>
+          </x-form-field>
         </div>
 
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div class="sm:col-span-4">
-          <label for="salary" class="block text-sm font-bold leading-6 text-gray-900">Job Salary</label>
-          <div class="mt-2">
-            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-             
-              <input type="text" name="salary" id="salary" class="block flex-1 border-0 px-3 bg-transparent py-1.5  text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="job salary" required>
-            </div>
-          </div>
-        </div>
+            <x-form-field>
+              <x-form-label for="salary">Job Salary</x-form-label>
+                <div class="mt-2">
+                  <x-form-input type="text" name="salary" id="salary" placeholder="job salary" required></x-form-input>
+                  <x-form-error name="salary" />
+                </div>
+            </x-form-field>
     </div>
             
-          </div>
-  
-         
-  
-     
-  
-      
+          </div>       
   
     <div class="mt-6 flex items-center justify-end gap-x-6">
       <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-      <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+     
+     <x-form-button type="submit" >Save</x-form-button>
     </div>
   </form>
   
