@@ -52,11 +52,19 @@
               </button> --}}
   
               <!-- Profile dropdown -->
-              <div class="relative ml-3">
+              <div class="relative ml-3 flex space-between items-center">
                 @guest
                 <x-nav href="/login" :active="request()->is('login')">Login</x-nav>
                 <x-nav href="/register" :active="request()->is('register')">Register</x-nav>
                 @endguest
+
+                @auth
+                <p class="px-3 text-white">Hello {{ Auth::user()->email}}</p>
+                   <form method="POST" action="/logout">
+                    @csrf
+                    <x-form-button>Log out</x-form-button>
+                   </form>
+                @endauth
                 {{-- <div>
                   <button type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                     <span class="absolute -inset-1.5"></span>
@@ -124,10 +132,11 @@
     <header class="bg-white shadow">
       <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 sm:flex sm:justify-between">
         <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{$heading}}</h1>
+        @auth
         <x-button href="/jobs/create">
           Add A New Job
         </x-button>
-       
+        @endauth
       </div>
     </header>
     <main>

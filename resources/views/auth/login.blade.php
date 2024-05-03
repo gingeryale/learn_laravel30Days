@@ -18,14 +18,12 @@
           @endforeach
         </div>
         @endif
-  
-        
 
         <div class="mt-3 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <x-form-field>
               <x-form-label for="email">Email</x-form-label>
                 <div class="mt-2">
-                  <x-form-input type="email" name="email" id="email" placeholder="job email" required></x-form-input>
+                  <x-form-input type="email" name="email" id="email" placeholder="job email" :value="old('email')" required></x-form-input>
                   <x-form-error name="email" />
                 </div>
             </x-form-field>

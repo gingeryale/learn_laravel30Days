@@ -37,19 +37,19 @@ Route::get('/jobs/{job}',[JobController::class, 'show']);
 
 
  // edit
- Route::get('/jobs/{job}/edit',[JobController::class, 'edit']);
+ Route::get('/jobs/{job}/edit',[JobController::class, 'edit'])->middleware('auth')->can('edit,job');
 
 
  // store 
- Route::post('/jobs',[JobController::class, 'store']);
+ Route::post('/jobs',[JobController::class, 'store'])->middleware('auth')->can('edit,job');
 
 
 // update
-Route::patch('/jobs/{job}', [JobController::class, 'update']);
+Route::patch('/jobs/{job}', [JobController::class, 'update'])->middleware('auth');
 
 
 // Delete
-Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
+Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->middleware('auth');
 
 
 Route::get('/contact', function () {
@@ -62,3 +62,4 @@ Route::post('/register', [RegisterUserController::class, 'store']);
 
 Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
+Route::post('/logout', [SessionController::class, 'destroy']);
