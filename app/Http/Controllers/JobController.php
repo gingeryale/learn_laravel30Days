@@ -31,12 +31,16 @@ class JobController extends Controller
             'title'=>['required','min:3'],
             'salary'=>['required', 'min:3']
         ]);
-
+        // SAVE to $job variable
         Job::create([
             'title'=>request('title'),
             'salary'=>request('salary'),
             'employer_id'=>2
         ]);
+
+        // Mail::to($job->employer->user)->send(
+        //     new \App\Mail\JobPosted();
+        // );
 
         return redirect('/jobs');
     }

@@ -2,6 +2,7 @@
 
 
 use App\Models\Job;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\SessionController;
@@ -25,6 +26,14 @@ Route::get('/', function () {
     
 });
 
+Route::get('testmail', function(){
+    // return new \App\Mail\JobPosted();
+    Mail::to('user@example.com')->send(
+        new \App\Mail\JobPosted()
+    );
+    return 'Complete';
+});
+
 // create
 Route::get('jobs/create',[JobController::class, 'create']);
 
@@ -41,7 +50,7 @@ Route::get('/jobs/{job}',[JobController::class, 'show']);
 
 
  // store 
- Route::post('/jobs',[JobController::class, 'store'])->middleware('auth')->can('edit,job');
+ Route::post('/jobs',[JobController::class, 'store'])->middleware('auth');
 
 
 // update
